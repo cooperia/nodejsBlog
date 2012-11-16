@@ -3,13 +3,16 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel='stylesheet' href='/stylesheets/style.mine.css' />
+	<script type="text/javascript" src="/javascripts/jquery-v1.8.2.js"></script>
+	<script type="text/javascript" src="/javascripts/viewAnimations.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 		<% for(i=0;i<data.length; i++){ %>
 			<article>
-				<dt><a href="/blog/<%= data[i]._id %>"><%= data[i].title %></a></dt>
+				<dt><a href="/<%= data[i]._id %>"><%= data[i].title %></a></dt>
 				
 				<dd><%= data[i].body %></dd>
 				<dd><%= data[i].created_at %></dd>
@@ -24,5 +27,14 @@
 			</article>
 		<%} %>
 		<%} %>
+		<strong id="addNew">Add New!</strong>
+		<div class="addNew hidden">
+			<h1 >Add New</h1>
+		    <form method="post" id="theForm">
+		    	Title: <input type="text" name="title" />
+				Body: <input type="text" name="body" />
+				<input type="submit" value="Post">
+		    </form>
+		</div>
   </body>
 </html>

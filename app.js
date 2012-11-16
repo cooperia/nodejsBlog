@@ -9,7 +9,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , viewAll = require('./routes/viewAll')
-  , newBlock = require('./routes/newBlock');
+  , newBlock = require('./routes/newBlock')
+  , notFound = require('./routes/notFound');
 
 var app = express();
 
@@ -33,10 +34,12 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/404', notFound.forohfor);
 app.get('/users', user.list);
 app.get('/viewAll', viewAll.viewAll);
-app.get('/new', newBlock.showView);
-app.post('/new', newBlock.newBlock);
+app.post('/viewAll', newBlock.newBlock);
+app.get('/:id', newBlock.newComment);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
